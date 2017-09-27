@@ -1,0 +1,43 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Gamers united",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/theydonthaveit/leige.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "hapi",
+    "passport",
+    "mariadb"
+  ],
+  "author": "Alan Williams <theydonthaveit@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theydonthaveit/leige/issues"
+  },
+  "homepage": "https://github.com/theydonthaveit/leige#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "hapi": "^16.6.2",
+    "hapi-passport": "0.0.6",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.4.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.11.1",
+    "stripe": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.31",
+    "nodemon": "^1.12.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
+  }
+}
