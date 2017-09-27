@@ -23,13 +23,22 @@ const USER = SEQUELIZE.define(
         lastName: {
             type: Sequelize.STRING
         },
+        mobile: {
+            type: Sequelize.STRING
+        },
         email: {
             type: Sequelize.STRING
         },
         password: {
             type: Sequelize.STRING
         },
+        postcode: {
+            type: Sequelize.STRING
+        },
         location: {
+            type: Sequelize.STRING
+        },
+        ipAddress: {
             type: Sequelize.STRING
         }
     }

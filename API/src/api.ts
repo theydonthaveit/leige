@@ -1,10 +1,11 @@
-import * as Hapi from 'hapi'
+import * as tls from 'tls';
+import * as Hapi from 'hapi';
 // import * as Hapi_Passport from 'hapi-passport'
 // import * as Strategy from 'passport-local'
 
-import DBH from './dbh'
+import Handler from './handlers'
 
-const SERVER = new Hapi.Server()
+const SERVER: any = new Hapi.Server()
 
 SERVER.connection({
     port: 3000,
@@ -12,12 +13,19 @@ SERVER.connection({
 })
 
 SERVER.route({
+    method: 'GET',
+    path: '/gaming',
+    handler: Handler.generate_base_profile
+})
+SERVER.route({
     method: 'POST',
-    path: '/create-profile',
-    handler: function (request: any, reply: any) {
-        let dbhResp = DBH.addUser(request.payload)
-        reply("You've been added to the DB")
-    }
+    path: '/protect-gamer-profile',
+    handler: Handler.protect_base_profile
+})
+SERVER.route({
+    method: 'POST',
+    path: '/build-gamer-profile',
+    handler: Handler.build_base_profile
 })
 
 SERVER.start((err: string) => {
@@ -27,3 +35,5 @@ SERVER.start((err: string) => {
 
     console.log(`Server running at: ${SERVER.info.uri}`)
 })
+
+export default { SERVER }
