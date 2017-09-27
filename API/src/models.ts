@@ -17,6 +17,9 @@ const SEQUELIZE = new Sequelize(
 
 const USER = SEQUELIZE.define(
     'User', {
+        userName: {
+            type: Sequelize.STRING
+        },
         firstName: {
             type: Sequelize.STRING
         },
@@ -32,7 +35,7 @@ const USER = SEQUELIZE.define(
         password: {
             type: Sequelize.STRING
         },
-        postcode: {
+        postCode: {
             type: Sequelize.STRING
         },
         location: {

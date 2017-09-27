@@ -1,12 +1,17 @@
 import * as Bcrypt from 'bcrypt'
+import * as SillyName from 'sillyname'
 
 import MODELS from './models'
 
 export default {
     addUser(ipAddress: string, postCode: string, locale: string): string {
-        const USER = MODELS.USER.sync({force: false}).then(() => {
+        let generatedUsername: string
+        generatedUsername = SillyName()
+
+        const USER = MODELS.USER.sync({force: true}).then(() => {
             MODELS.USER.create({
-                postcode: postCode,
+                userName: generatedUsername,
+                postCode: postCode,
                 location: locale,
                 ipAddress: ipAddress
             })
