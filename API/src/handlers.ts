@@ -2,6 +2,12 @@ import * as GeoLocal from 'node-where';
 import DBH from './dbh'
 
 export default {
+    private_add_game_to_db: function(req: any, res: any) {
+        let ipAddressReq: string = req.info.remoteAddress
+
+        let dbhResp = DBH.addGamesToDatabase(req.payload, ipAddressReq)
+        res(dbhResp)
+    },
     generate_base_profile: function(req: any, res: any) {
         let ipAddressReq: string = req.info.remoteAddress
         let geoPostCodeRes: string

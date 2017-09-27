@@ -60,6 +60,22 @@ export default {
     addGameToProfile(payload: any): void {
         // TODO
         // Add games you play to your profile plus associated account details
+        MODELS.GAMESCLASS.findOne({
+            where: {
+                title: payload.gameTitle
+            }
+        }).then((game_id) => {
+            MODELS.USER.findOne({
+                where: {
+                    userName: payload.userName
+                }
+            }).then((user) => {
+                user.update({
+                    games: game_id
+                })
+            })  
+        })
+
     },
     createGame(payload: string) {
         // TODO
@@ -71,8 +87,22 @@ export default {
     },
     updateUserLocation(ipAddress: string) { 
         // TODO
+        // CAN ONLY BE DONE WITH TOOLS LIKE PASSPORT INVOLVED
         // update the users locations each time they login via the web portal or phone
         // to accurately track their representation 
         // send email or prompt to ask if it is you logging in from that location
+    },
+    addGamesToDatabase(payload: any, ipAddress: string) {
+        ipAddress === '127.0.0.1'
+        ? (
+            MODELS.GAMESCLASS.sync({force: true}).then(() => {
+                MODELS.GAMESCLASS.create({
+                    title: payload.gameTitle,
+                    nameVariant: payload.nameVariant,
+                    imageUri: payload.imageUri
+                })
+            })
+        )
+        : (null)
     }
 }

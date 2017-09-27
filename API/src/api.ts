@@ -27,6 +27,13 @@ SERVER.route({
     path: '/build-gamer-profile',
     handler: Handler.build_base_profile
 })
+// TODO
+// separate business actions from user action
+SERVER.route({
+    method: 'POST',
+    path: '/add-games-to-system',
+    handler: Handler.private_add_game_to_db
+})
 
 SERVER.start((err: string) => {
     if (err) {
