@@ -2,6 +2,7 @@ import * as Bcrypt from 'bcrypt'
 import * as SillyName from 'sillyname'
 
 import MODELS from './models'
+import UTILS from './utils'
 
 export default {
     addUser(ipAddress: string, postCode: string, locale: string): string {
@@ -57,26 +58,41 @@ export default {
             })
         })
     },
-    addGameToProfile(payload: any): void {
-        // TODO
-        // Add games you play to your profile plus associated account details
-        MODELS.GAMESCLASS.findOne({
-            where: {
-                title: payload.gameTitle
-            }
-        }).then((game_id) => {
-            MODELS.USER.findOne({
-                where: {
-                    userName: payload.userName
-                }
-            }).then((user) => {
-                user.update({
-                    games: game_id
-                })
-            })  
-        })
+    createMatch(payload: any, ipAddressReq: string) {
+        let valid = UTILS.validatePlayersLocations(payload.players)
 
+        const USER = MODELS.LIVEGAMES.sync({force: true}).then(() => {
+            MODELS.LIVEGAMES.create({
+                user_id: payload.user_id,
+                match_name: payload.match_name,
+                match_id: payload.match_id,
+                players: payload.palyers,
+                stream_url: payload.stream_url,
+                region: valid.region,
+                location_of_match: valid.location
+            })
+        })
     },
+    // addGameToProfile(payload: any): void {
+    //     // TODO
+    //     // Add games you play to your profile plus associated account details
+    //     MODELS.GAMESCLASS.findOne({
+    //         where: {
+    //             title: payload.gameTitle
+    //         }
+    //     }).then((game_id) => {
+    //         MODELS.USER.findOne({
+    //             where: {
+    //                 userName: payload.userName
+    //             }
+    //         }).then((user) => {
+    //             user.update({
+    //                 games: game_id
+    //             })
+    //         })  
+    //     })
+
+    // },
     createGame(payload: string) {
         // TODO
         // Create a game with all the requirements

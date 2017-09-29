@@ -11,12 +11,41 @@ SERVER.connection({
     port: 3000,
     host: 'localhost'
 })
+SERVER.state('session', {
+    ttl: 2 * 60 * 60 * 1000,
+    isSecure: true,
+    path: '/',
+    encoding: 'base64json'
+});
 
+SERVER.route({
+    method: 'GET',
+    path: '/',
+    handler: Handler.home
+})
 SERVER.route({
     method: 'GET',
     path: '/gaming',
     handler: Handler.generate_base_profile
 })
+
+// QUERY
+// SERVER.route({
+//     method: 'GET',
+//     path: '/find-game',
+//     handler: Handler.build_base_profile
+// })
+// SERVER.route({
+//     method: 'GET',
+//     path: '/find-player',
+//     handler: Handler.build_base_profile
+// })
+// SERVER.route({
+//     method: 'GET',
+//     path: '/find-team',
+//     handler: Handler.build_base_profile
+// })
+
 SERVER.route({
     method: 'POST',
     path: '/protect-gamer-profile',
@@ -27,6 +56,35 @@ SERVER.route({
     path: '/build-gamer-profile',
     handler: Handler.build_base_profile
 })
+
+SERVER.route({
+    method: 'POST',
+    path: '/create-game',
+    handler: Handler.create_match
+})
+SERVER.route({
+    method: 'POST',
+    path: '/create-challenge',
+    handler: Handler.build_base_profile
+})
+SERVER.route({
+    method: 'POST',
+    path: '/create-team',
+    handler: Handler.build_base_profile
+})
+
+// DECIDE HOW THIS SHOULD BE HANDLED
+// SERVER.route({
+//     method: 'POST',
+//     path: '/invite-to-game',
+//     handler: Handler.build_base_profile
+// })
+// SERVER.route({
+//     method: 'POST',
+//     path: '/invite-to-team',
+//     handler: Handler.build_base_profile
+// })
+
 // TODO
 // separate business actions from user action
 SERVER.route({

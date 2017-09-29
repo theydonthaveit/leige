@@ -54,6 +54,17 @@ const USER = SEQUELIZE.define(
     }
 )
 
+const PROFILE_URLS = SEQUELIZE.define(
+    'ProfileUrls', {
+        user_id: {
+            type: Sequelize.INTEGER
+        },
+        url: {
+            type: Sequelize.STRING
+        }
+    }
+)
+
 const GAMESCLASS = SEQUELIZE.define(
     'GameClass', {
         title: {
@@ -70,45 +81,48 @@ const GAMESCLASS = SEQUELIZE.define(
     }
 )
 
-const GAMESTATS = SEQUELIZE.define(
-    'GameStats', {
-        title: {
-            type: Sequelize.STRING
-        },
-        playersOnline: {
-            type: Sequelize.INTEGER
-        },
-        playersAssociated: {
-            type: Sequelize.INTEGER
-        }
-    }, {
-        timestamps: false
-    }
-)
+// const GAMESTATS = SEQUELIZE.define(
+//     'GameStats', {
+//         title: {
+//             type: Sequelize.STRING
+//         },
+//         playersOnline: {
+//             type: Sequelize.INTEGER
+//         },
+//         playersAssociated: {
+//             type: Sequelize.INTEGER
+//         }
+//     }, {
+//         timestamps: false
+//     }
+// )
 
 const LIVEGAMES = SEQUELIZE.define(
     'LiveGames', {
-        title: {
+        // ONLY TO KEEP TRACK OF WHO CREATED THE MATCH - NO RELEVANCE TO SCORE ETC.
+        user_id: {
+            type: Sequelize.INTEGER
+        },
+        match_name: {
             type: Sequelize.STRING
         },
-        matchName: {
+        match_id: {
+            type: Sequelize.STRING
+        },
+        players: {
+            type: Sequelize.JSON
+        },
+        stream_url: {
+            type: Sequelize.STRING
+        },
+        region: {
+            type: Sequelize.STRING
+        },
+        location_of_match: {
             type: Sequelize.STRING
         }
     }
 )
 
-// USER.belongToMany(GAMESCLASS, { through: 'games' })
-// GAMESCLASS.belongToMany(USER, { through: 'id' })
 
-// const City = sequelize.define('city', { countryCode: Sequelize.STRING });
-// const Country = sequelize.define('country', { isoCode: Sequelize.STRING });
-
-// // Here we can connect countries and cities base on country code
-// Country.hasMany(City, {foreignKey: 'countryCode', sourceKey: 'isoCode'});
-// City.belongsTo(Country, {foreignKey: 'countryCode', targetKey: 'isoCode'});
-
-
-// GAMESTATS.hasMany(GAMESCLASS, {foreignKey: 'nameVariant', sourceKey: 'title'});
-// GAMESCLASS.belongsTo(GAMESTATS, {foreignKey: 'nameVariant', targetKey: 'title'});
-
-export default { USER, GAMESCLASS, GAMESTATS, LIVEGAMES }
+export default { USER, PROFILE_URLS, LIVEGAMES, GAMESCLASS }

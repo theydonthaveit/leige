@@ -1,17 +1,22 @@
 import * as GeoLocal from 'node-where';
 import DBH from './dbh'
+import SessionDBH from './session_dbh'
 
 export default {
-    private_add_game_to_db: function(req: any, res: any) {
-        let ipAddressReq: string = req.info.remoteAddress
-
-        let dbhResp = DBH.addGamesToDatabase(req.payload, ipAddressReq)
-        res(dbhResp)
+    home: async function(req: any, res: any) {
+        let session = req.state.session;
+        if (!session) {
+            session = { ipAddress: req.info.remoteAddress };
+        }
+        session.last = Date.now();
+        await SessionDBH.storeSession(session)
+        
+        return res('Success').state('session', session);
     },
     generate_base_profile: function(req: any, res: any) {
         let ipAddressReq: string = req.info.remoteAddress
         let geoPostCodeRes: string
-        let geoAddressRes: string        
+        let geoAddressRes: string
 
         GeoLocal.is(ipAddressReq, function(err, result) {
             if (result) {
@@ -22,8 +27,8 @@ export default {
             }
         })
 
-        let dbhResp = DBH.addUser(ipAddressReq, geoPostCodeRes, geoAddressRes)
-        res(dbhResp)
+        let dbhUserName = DBH.addUser(ipAddressReq, geoPostCodeRes, geoAddressRes)
+        res(dbhUserName)
     },
     protect_base_profile: function(req: any, res: any) {
         let ipAddressReq: string = req.info.remoteAddress
@@ -35,6 +40,19 @@ export default {
         let ipAddressReq: string = req.info.remoteAddress
 
         let dbhResp = DBH.buildYourProfile(req.payload, ipAddressReq)
+        res(dbhResp)
+    },
+    create_match: function(req: any, res: any) {
+        let ipAddressReq: string = req.info.remoteAddress
+        
+        let dbhResp = DBH.createMatch(req.payload, ipAddressReq)
+        res(dbhResp)
+    },
+    // TO BE ADDED TO PRIVATE API
+    private_add_game_to_db: function(req: any, res: any) {
+        let ipAddressReq: string = req.info.remoteAddress
+
+        let dbhResp = DBH.addGamesToDatabase(req.payload, ipAddressReq)
         res(dbhResp)
     }
 }
