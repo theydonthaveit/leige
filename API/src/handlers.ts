@@ -3,17 +3,21 @@ import DBH from './dbh'
 import SessionDBH from './session_dbh'
 
 export default {
-    home: async function(req: any, res: any) {
-        let session = req.state.session;
-        if (!session) {
-            session = { ipAddress: req.info.remoteAddress };
-        }
-        session.last = Date.now();
-        await SessionDBH.storeSession(session)
-        
-        return res('Success').state('session', session);
-    },
+    // home: async function(req: any, res: any) {
+    //     let session = req.state.session;
+    //     if (!session) {
+    //         session = { ipAddress: req.info.remoteAddress };
+    //     }
+    //     session.last = Date.now();
+    //     await SessionDBH.storeSession(session)
+    //
+    //     return res('Success').state('session', session);
+    // },
     generate_base_profile: function(req: any, res: any) {
+        if ( req.path.match('favicon') ) {
+            return res().code(204).type('image/x-icon');
+        }
+
         let ipAddressReq: string = req.info.remoteAddress
         let geoPostCodeRes: string
         let geoAddressRes: string
@@ -28,7 +32,7 @@ export default {
         })
 
         let dbhUserName = DBH.addUser(ipAddressReq, geoPostCodeRes, geoAddressRes)
-        res(dbhUserName)
+        res('This was successful')
     },
     protect_base_profile: function(req: any, res: any) {
         let ipAddressReq: string = req.info.remoteAddress
@@ -44,7 +48,7 @@ export default {
     },
     create_match: function(req: any, res: any) {
         let ipAddressReq: string = req.info.remoteAddress
-        
+
         let dbhResp = DBH.createMatch(req.payload, ipAddressReq)
         res(dbhResp)
     },

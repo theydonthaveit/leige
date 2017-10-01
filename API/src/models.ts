@@ -1,13 +1,16 @@
 import { SecureClientSessionOptions } from 'http2';
 import * as Sequelize from 'sequelize';
 
+// mysql://nnxe18q6mvntor4e:khzozefo4x7fql11@n7qmaptgs6baip9z.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/rq3hoz8ohqisvvyg
+
 const SEQUELIZE = new Sequelize(
-    'leige',
-    'root',
-    'blank', {
-        host: 'localhost',
+    'rq3hoz8ohqisvvyg',
+    'nnxe18q6mvntor4e',
+    'khzozefo4x7fql11', {
+        host: 'n7qmaptgs6baip9z.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+        port: '3306',
         dialect: 'mysql',
-  
+
         pool: {
             max: 5,
             min: 0,
@@ -15,6 +18,8 @@ const SEQUELIZE = new Sequelize(
         }
     }
 )
+
+
 
 const USER = SEQUELIZE.define(
     'User', {
