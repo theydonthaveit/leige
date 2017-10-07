@@ -1,51 +1,48 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { FormLabel, FormInput, SearchBar } from 'react-native-elements'
+
+class LeagueOfLegendsForm extends Component {
+  render () {
+    return (
+      <View>
+        <FormLabel>Summoner Name</FormLabel>
+        <FormInput/>
+      </View>
+    )
+  }
+}
+
+class StreetFigherForm extends Component {
+  render () {
+    return (
+      <View>
+        <FormLabel>Summoner Name</FormLabel>
+        <FormInput/>
+      </View>
+    )
+  }
+}
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      latitude: null,
-      longitude: null,
-      error: null,
-    };
-  }
-
-  componentDidMount() {
-    this.watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
-    );
-  }
-
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchId);
-  }
+  // construct GAME STATE
+  // changeGameState
+  // depending on Game state display the correct form component
 
   render() {
     return (
-      <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+      <View>
+        <SearchBar
+          placeholder='Type Here...' />
+        <Text>Complete</Text>
+        <LeagueOfLegendsForm></LeagueOfLegendsForm>
       </View>
     );
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+
+const styles = StyleSheet.create({
+  test: {fontWeight: 'bold',
+  fontSize: 120}
+})
