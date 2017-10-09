@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { FormLabel, FormInput, SearchBar } from 'react-native-elements'
 
-class LeagueOfLegendsForm extends Component {
-  render () {
+class GameCarosal extends Component {
+  render() {
+    let pic = {
+      uri: 'https://news-a.akamaihd.net/public/images/misc/GameBox.jpg'
+    }
     return (
-      <View>
-        <FormLabel>Summoner Name</FormLabel>
-        <FormInput/>
-      </View>
+      <Image source={pic} style={styles.image}/>
     )
   }
 }
-
-class StreetFigherForm extends Component {
+class LeagueOfLegendsForm extends Component {
   render () {
     return (
       <View>
@@ -34,7 +33,7 @@ export default class App extends Component {
       <View>
         <SearchBar
           placeholder='Type Here...' />
-        <Text>Complete</Text>
+        <GameCarosal></GameCarosal>
         <LeagueOfLegendsForm></LeagueOfLegendsForm>
       </View>
     );
@@ -44,5 +43,8 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   test: {fontWeight: 'bold',
-  fontSize: 120}
+  fontSize: 120},
+  image: {
+    height: 350
+  }
 })
