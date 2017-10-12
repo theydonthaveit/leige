@@ -13,6 +13,11 @@ export default {
     //
     //     return res('Success').state('session', session);
     // },
+    game_images: async (req: any, res: any) => {
+        if ( req.path.match('favicon') ) {
+            return res().code(204).type('image/x-icon');
+        }
+    },
     generate_base_profile: function(req: any, res: any) {
         if ( req.path.match('favicon') ) {
             return res().code(204).type('image/x-icon');

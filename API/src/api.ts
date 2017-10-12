@@ -23,8 +23,13 @@ SERVER.connection({
 // })
 SERVER.route({
     method: 'GET',
-    path: '/gaming',
+    path: '/',
     handler: Handler.generate_base_profile
+})
+SERVER.route({
+    method: 'GET',
+    path: '/retrieve_game_images',
+    handler: Handler.game_images
 })
 
 // QUERY
