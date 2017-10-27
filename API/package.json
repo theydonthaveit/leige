@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/theydonthaveit/broccoli-#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "hapi": "^16.6.2",
     "joi": "^13.0.1",

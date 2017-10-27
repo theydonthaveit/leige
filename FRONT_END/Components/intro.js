@@ -5,7 +5,16 @@ import styles from './styles'
 
 export default class Intro extends Component {
     static navigationOptions = {
-        title: 'foodtech'
+        title: 'leige',
+        headerTintColor: '#2F95D6',
+        headerStyle: {
+            backgroundColor: '#ffffff',
+            borderBottomColor: '#2F95D6',
+            borderBottomWidth: 3
+        },
+        headerTitleStyle: {
+            fontSize: 18
+        }
     }
 
     _aboutUs = () => {

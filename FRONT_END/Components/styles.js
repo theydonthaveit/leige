@@ -8,8 +8,16 @@ const intro = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center',
-    height
+    justifyContent: 'center'
+  },
+  game_image: {
+    flex: 1,
+    width,
+    height: width
+  },
+  game_title: {
+    flex: 1,
+    width
   },
   image: {
     flex: 1,
