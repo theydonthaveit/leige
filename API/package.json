@@ -1,0 +1,29 @@
+{
+  "name": "broccoli",
+  "version": "1.0.0",
+  "description": "a stealth food application",
+  "main": "serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theydonthaveit/broccoli-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theydonthaveit/broccoli-/issues"
+  },
+  "homepage": "https://github.com/theydonthaveit/broccoli-#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcryptjs": "^2.4.3",
+    "hapi": "^16.6.2",
+    "joi": "^13.0.1",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.4",
+    "nconf": "^0.8.5",
+    "path": "^0.12.7"
+  }
+}

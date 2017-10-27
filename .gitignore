@@ -1,2 +1,4 @@
-node_modules
+API/node_modules
+API/src/configurations/config.dev.json
+FRONT_END/node_modules
 .vscode
