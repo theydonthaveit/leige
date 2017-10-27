@@ -3,7 +3,6 @@ import { ActivityIndicator, StyleSheet, Text, View, Image } from 'react-native';
 import { Card, Button, FormLabel, FormInput, SearchBar } from 'react-native-elements'
 
 // COULD DO A GLOBAL FETCH OT XTHP whatever it is called
-
 class GameCarosal extends Component {
   constructor() {
     super()
@@ -71,6 +70,8 @@ class LeagueOfLegendsForm extends Component {
       <View>
         <FormLabel>Summoner Name</FormLabel>
         <FormInput/>
+        <Button
+          title='ENTER' />
       </View>
     )
   }
