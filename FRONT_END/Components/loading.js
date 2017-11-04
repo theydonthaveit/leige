@@ -4,13 +4,13 @@ import { ActivityIndicator, View, Text, Button } from 'react-native'
 import styles from './styles'
 
 export default class Loading extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            buttonVisible: false
-        }
+    state = {
+        buttonVisible: false
     }
+
+    BASE_URL = 'https://euw1.api.riotgames.com/'
+    summonerNameDetails = 'lol/summoner/v3/summoners/by-name/'
+    
 
     // componentDidMount() {
     //     setInterval(() => {

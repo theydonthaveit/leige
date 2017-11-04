@@ -16,11 +16,10 @@ export default class LeagueOfLegends extends Component {
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                FormData.latitude = position.coords.latitude
-                // this.setState({
-                //     latitude: position.coords.latitude,
-                //     longitude: position.coords.longitude
-                // })
+                FormData.coords = {
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude
+                }
             },
             (error) => this.setState({error: error.message}),
             {

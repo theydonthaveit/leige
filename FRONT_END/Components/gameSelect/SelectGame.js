@@ -16,7 +16,7 @@ export default class SelectGame extends Component {
 
     _submitForm = () => {
         console.log(JSON.stringify(FormData))
-        // this.props.navigation.navigate('Loading')        
+        this.props.navigation.navigate('Loading')        
     }
 
     _findGame = () => {

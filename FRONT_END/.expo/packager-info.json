@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 27253,
-  "expoServerNgrokUrl": "https://hy-ukg.theydonthaveit.front-end.exp.direct",
-  "packagerNgrokUrl": "https://packager.hy-ukg.theydonthaveit.front-end.exp.direct",
-  "ngrokPid": 27303
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
